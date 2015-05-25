@@ -29,7 +29,7 @@ class ArticlesController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		return view('articles.create');
 	}
 
 	/**
@@ -37,9 +37,11 @@ class ArticlesController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store($article)
 	{
-		//
+		$title = $article->title;
+
+		return $title;
 	}
 
 	/**
