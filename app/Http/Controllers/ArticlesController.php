@@ -50,7 +50,9 @@ class ArticlesController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		$article = Article::findorfail($id);
+
+		return view('articles.show', compact('article'));
 	}
 
 	/**
