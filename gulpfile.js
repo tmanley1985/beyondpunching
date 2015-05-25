@@ -12,21 +12,21 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
-    mix.sass('app.sass')
-    .publish(
-    	'jquery/dist/jquery.min.js',
+	mix.sass('app.scss');
+    mix.copy(
+    	'vendor/bower/jquery/dist/jquery.min.js',
     	'public/js/vendor/jquery.js'
     )
-    .publish(
-    	'bootstrap-sass-official/assets/javascripts/bootstrap.js',
+    .copy(
+    	'vendor/bower/bootstrap-sass-official/assets/javascripts/bootstrap.js',
     	'public/js/vendor/bootstrap.js'
     )
-    .publish(
-    	'font-awesome/css/font-awesome.min.css',
+    .copy(
+    	'vendor/bower/fontawesome/css/font-awesome.min.css',
     	'public/css/vendor/font-awesome.css'
     )
-    .publish(
-    	'font-awesome/fonts',
+    .copy(
+    	'vendor/bower/fontawesome/fonts/',
     	'public/css/fonts'
     );
 });
