@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'PagesController@index');
+Route::get('/dashboard', 'PagesController@dashboard')
 
 Route::resource('articles', 'ArticlesController');
 

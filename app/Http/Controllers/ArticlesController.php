@@ -2,6 +2,7 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 
 use Request;
 
@@ -40,6 +41,7 @@ class ArticlesController extends Controller {
 	public function store()
 	{
 		$input = Request::all();
+		$input['published_at'] = Carbon::now();
 
 		Article::create($input);
 
