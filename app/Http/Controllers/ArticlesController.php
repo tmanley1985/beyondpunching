@@ -3,7 +3,7 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use Illuminate\Http\Request;
+use Request;
 
 use App\Article;
 
@@ -37,11 +37,13 @@ class ArticlesController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store($article)
+	public function store()
 	{
-		$title = $article->title;
+		$input = Request::all();
 
-		return $title;
+		Article::create($input);
+
+		return redirect('articles');
 	}
 
 	/**
