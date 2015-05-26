@@ -84,7 +84,9 @@ class ArticlesController extends Controller {
 	{
 		$article = Article::findorFail($id);
 
-		$article->update($request->all());
+		$input = Request::all();
+
+		$article->update($input);
 
 		return redirect('dashboard');
 	}

@@ -15,7 +15,7 @@
 			<div class="col-sm-12">
 				<ul class="list-unstyled">
 					<li>
-						<a href="{{ url('/articles/$article->id/edit') }}" class="btn btn-primary">Edit</a>
+						<a href="{{ url('/articles/' . $article->id .'/edit') }}" class="btn btn-primary">Edit</a>
 					</li>
 
 					<li>
