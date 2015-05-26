@@ -3,7 +3,11 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use Illuminate\Http\Request;
+use Carbon\Carbon;
+
+use Request;
+
+use App\Article;
 
 class PagesController extends Controller {
 
@@ -21,7 +25,9 @@ class PagesController extends Controller {
 
 	public function dashboard(){
 
-		return view('dashboard');
+		$articles = Article::all();
+
+		return view('dashboard', compact('articles'));
 	}
 
 }

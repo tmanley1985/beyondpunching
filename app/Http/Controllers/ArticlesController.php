@@ -69,7 +69,9 @@ class ArticlesController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		$article = Article::findorFail($id);
+
+		return view('articles.edit', compact('article'));
 	}
 
 	/**
@@ -78,9 +80,13 @@ class ArticlesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($id, Request $request)
 	{
-		//
+		$article = Article::findorFail($id);
+
+		$article->update($request->all());
+
+		return redirect('dashboard');
 	}
 
 	/**
@@ -91,7 +97,11 @@ class ArticlesController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		$article = Article::find($id);
+
+		$article->delete();
+
+		return redirect('dashboard');
 	}
 
 }
