@@ -10,27 +10,30 @@
 			<hr>
 		</div>
 	</div>
+
+	<div class="row text-center">
+		<div class="col-sm-12">
+			<a href="{{ url('/articles/create') }} " class="btn btn-primary">Create New Article</a>
+		</div>
+	</div>
 	@foreach($articles as $article)
-		<div class="row">
-			<div class="col-sm-12">
-				<ul class="list-unstyled">
-					<li>
-						<a href="{{ url('/articles/' . $article->id .'/edit') }}" class="btn btn-primary">Edit</a>
-					</li>
+		<div class="row text-center">
+			<div class="col-sm-4">
 
-					<li>
-						{!! Form::open(['route' => ['articles.destroy', $article->id], 'method' => 'delete']) !!}
-							
-						{!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-
-						{!! Form::close() !!}
-					</li>
-
-					<li>
-						<a href=" {{ url('/articles', $article->id) }}">{{ $article->title }}</a>
-					</li>
-				</ul>
+				<a href="{{ url('/articles/' . $article->id .'/edit') }}" class="btn btn-primary">Edit</a>
 			</div>
+
+				<div class="col-sm-4">
+					{!! Form::open(['route' => ['articles.destroy', $article->id], 'method' => 'delete']) !!}
+																	
+					{!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+										
+					{!! Form::close() !!}
+				</div>
+
+				<div class="col-sm-4">
+					<a href=" {{ url('/articles', $article->id) }}">{{ $article->title }}</a>
+				</div>		
 		</div>
 	@endforeach
 </div>
