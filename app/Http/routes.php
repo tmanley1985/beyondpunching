@@ -12,10 +12,15 @@
 */
 
 Route::get('/', 'PagesController@index');
-Route::get('/dashboard', 'PagesController@dashboard');
 
-Route::resource('articles', 'ArticlesController');
 
+Route::resource('/users', 'UsersController');
+Route::resource('users.articles', 'ArticlesController');
+Route::get('users/{id}/dashboard', [
+	'as' => 'dashboard', 'uses' => 'ArticlesController@dashboard'
+]);
+
+	
 /**
  * Auth Specific
  */

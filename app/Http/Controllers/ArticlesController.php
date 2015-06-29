@@ -3,7 +3,7 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
-
+use Auth;
 use Request;
 
 use App\Article;
@@ -15,7 +15,7 @@ class ArticlesController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index($user_id)
 	{
 
 		$articles = Article::all();
@@ -40,10 +40,10 @@ class ArticlesController extends Controller {
 	 */
 	public function store()
 	{
-		$input = Request::all();
-		$input['published_at'] = Carbon::now();
+		$article = new Article(Request::all());
+		$article['published_at'] = Carbon::now();
 
-		Article::create($input);
+		Auth::user()->articles()->save($article);
 
 		return redirect('articles');
 	}
@@ -54,9 +54,13 @@ class ArticlesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($user_id, $article_id)
 	{
-		$article = Article::findorfail($id);
+		$authenticated_user = Auth::user()->id;
+
+		if( $authenticated_user != $user_id){ return redirect('/');}
+
+		$article = Auth::user()->articles()->findorFail($article_id);
 
 		return view('articles.show', compact('article'));
 	}
@@ -67,7 +71,7 @@ class ArticlesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit($user_id, $article_id)
 	{
 		$article = Article::findorFail($id);
 
@@ -104,6 +108,13 @@ class ArticlesController extends Controller {
 		$article->delete();
 
 		return redirect('dashboard');
+	}
+
+	public function dashboard(){
+		
+		$articles = Article::all();
+
+		return view('dashboard', compact('articles'));
 	}
 
 }

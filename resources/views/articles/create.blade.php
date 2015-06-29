@@ -12,7 +12,7 @@
 		</div>
 		<div class="row">
 			<div class="col-sm-12">
-				{!! Form::open(['url' => 'articles']) !!}
+				{!! Form::open(array('route' => array('users.articles.store'))) !!}
 
 				<div class="form-group">
 					{!! Form::label('title', 'Title:') !!}
